@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <script>
+        var startdate;
+        var enddate;
+        function getInputValue() {
+            var startbutton= document.getElementById("startbutton").value;
+            var endbutton= document.getElementById("endbutton").value; 
+            var startlink = document.getElementById("start")['href'] = "http://127.0.0.1:5000/api/v1.0/"+startbutton;
+            var startEndLink = document.getElementById("start-end")['href'] = "http://127.0.0.1:5000/api/v1.0/"+startbutton + "/" +endbutton;
+            console.log(startbutton);
+            console.log(startlink);
+            console.log(startEndLink);
+        };
+        
+    </script>
+    <body>
+        <h1>Welcome to my 'Home' page! </h1>
+        <div>
+            <p>
+                <h3>Here is a list of the available routes <br/></h2>
+            </p>
+            <ul>
+            <li>
+                <p> <a href="http://127.0.0.1:5000{{urls[0]}}"> {{urls[0]}}  </a> will return a JSON list of all precipitation amounts by date</p>
+            </li>
+            <li>
+                <p> <a href="http://127.0.0.1:5000{{urls[1]}}"> {{urls[1]}}  </a> will return a JSON list of all stations</p>
+            </li>
+            <li>
+                <p> <a href="http://127.0.0.1:5000{{urls[2]}}"> {{urls[2]}}  </a> will return a JSON list of temperature observations for the most active stations over the last year of available data </p>
+            </li>
+            <li>
+                <p> <a id = "start" href="http://127.0.0.1:5000/api/v1.0/"startdate> {{urls[3]}}  </a> will return a JSON list of the minimum, maxium, and average tempature observations based on your provided start date. Use format: YYYY-MM-DD </p>
+            </li>
+            <li>
+                <p> <a id= "start-end" href="http://127.0.0.1:5000/api/v1.0/{{startdate}}"> {{urls[4]}}  </a> will return a JSON list of the minimum, maxium, and average tempature observations based on your provided 'start date/end date'. Use format: YYYY-MM-DD/YYYY-MM-DD </p>
+            </li>
+            <br/>
+            </ul>   
+        </div>
+        
+        <div>
+            <p>
+                <h3>Feel free to input your chosen start and/or end date into the below submission forms and the above link/s to the results will dynamically update</h2>
+            </p>
+            <form>
+                <label for="start">Enter Start Date:</label>
+                <input type="text" id= "startbutton" placeholder="YYYY-MM-DD">
+                <button type="button" onclick ="getInputValue();">Submit</button>
+            </form>
+            <br/>
+            <form>
+                <label for="end">Enter End Date:</label>
+                <input type="text" id= "endbutton" name="end" placeholder="YYYY-MM-DD">
+                <button type="button" onclick ="getInputValue();">Submit</button>
+            </form>
+            <br/>
+            <br/>
+            
+        </div>  
+        
+
+        
+        
+    </body>
+</html>
